@@ -1,16 +1,18 @@
 package calculator;
 
 import java.util.InputMismatchException;
+import java.util.MissingResourceException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-// Source: https://github.com/sammou00/java/blob/main/basic-calculator/Main.java
+// Modified from source: https://github.com/sammou00/java/blob/main/basic-calculator/Main.java
 public class Main
 {
 
     public static void main(String[] args)
     {
         Scanner scanner = new Scanner(System.in);
+        
         try
         {
             do
@@ -30,11 +32,14 @@ public class Main
         	try {
         		scanner.close();
         	}catch (NoSuchElementException e) {
-				System.out.println(e.toString());
+        		e.printStackTrace();
+        		throw new RuntimeException("Error closing connection");
+        	}catch (MissingResourceException e) {
+        		// TODO: handle exception
         	}catch (Exception e) {
-				// Generic Exception Anti Pattern
-        		System.out.println(e.toString());
+				e.printStackTrace();
 			}
+        	
         }
     }
 
